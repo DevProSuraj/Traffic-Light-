@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+}
+
+.traffic-light {
+    width: 100px;
+    height: 300px;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.light {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #555;
+    opacity: 0.3;
+    transition: opacity 1s ease, background-color 1s ease;
+}
+
+.red.active {
+    background-color: red;
+    opacity: 1;
+}
+
+.yellow.active {
+    background-color: rgb(227, 238, 13);
+    opacity: 1;
+}
+.green.active {
+    background-color: rgb(61, 236, 8);
+    opacity: 1;
+
+}
+
+    </style>
+</head>
+<body>
+    <div class="traffic-light">
+        <div id="red" class="light red"></div>
+        <div id="yellow" class="light yellow"></div>
+        <div id="green" class="light green"></div>
+    </div>
+
+
+    <script>
+        let redLight = document.getElementById('red');
+let yellowLight = document.getElementById('yellow');
+let greenLight = document.getElementById('green');
+
+let currentLight = 'red';
+
+// Function to change the lights with animation
+function changeLights() {
+    // Reset all lights
+    redLight.classList.remove('active');
+    yellowLight.classList.remove('active');
+    greenLight.classList.remove('active');
+
+    // Turn on the correct light based on the current state
+    if (currentLight === 'red') {
+        redLight.classList.add('active');
+        currentLight = 'yellow'; // Next is yellow
+    } else if (currentLight === 'yellow') {
+        yellowLight.classList.add('active');
+        currentLight = 'green'; // Next is green
+    } else if (currentLight === 'green') {
+        greenLight.classList.add('active');
+        currentLight = 'red'; // Next is red
+    }
+}
+
+// Set interval to change lights every 2 seconds (3000ms)
+setInterval(changeLights, 3000);
+
+// Initial light state
+changeLights();
+    </script>
+</body>
+</html>
